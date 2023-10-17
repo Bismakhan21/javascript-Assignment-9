@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     var display = document.getElementById("display");
-    var hoursInput = document.getElementById("hours")
     var minutesInput = document.getElementById("minutes");
     var secondsInput = document.getElementById("seconds");
     var startButton = document.getElementById("startButton");
@@ -12,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateDisplay() {
         var hours = Math.floor(totalSeconds / 3600);
         var minutes = Math.floor((totalSeconds % 3600) / 60);
-        var seconds =math.floor(totalSeconds % 60);
-        var displayText = '';
+        var seconds = totalSeconds % 60;
+        let displayText = '';
 
         if (hours < 10) {
           displayText += '0' + hours;
@@ -38,15 +37,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         display.textContent = displayText;
-        
-    }
+            }
 
     startButton.addEventListener("click", function() {
         if (!timer) {
-            var hours = parseInt (hoursInput.value) || 0;
             var minutes = parseInt(minutesInput.value) || 0;
             var seconds = parseInt(secondsInput.value) || 0;
-            totalSeconds = hours * 60 * 60 + minutes * 60 + seconds;
+            totalSeconds =  minutes * 60 + seconds;
             if (totalSeconds > 0) {
                 timer = setInterval(function() {
                     if (totalSeconds > 0) {
@@ -68,4 +65,4 @@ document.addEventListener("DOMContentLoaded", function() {
         secondsInput.value = "";
         updateDisplay();
     });
- });
+});
